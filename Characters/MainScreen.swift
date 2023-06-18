@@ -23,6 +23,12 @@ class MainScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSubviews()
+
+        Task {
+            let a = try await self.networkManager.fetchTwoPhotos()
+            print(a)
+        }
+
     }
 
     private func setupSubviews() {
