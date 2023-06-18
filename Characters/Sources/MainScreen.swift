@@ -8,7 +8,6 @@ final class MainScreen: UIViewController {
     private var characterDataImages = [UIImage]()
     private lazy var tableView: UITableView = {
         let table = UITableView()
-        table.delegate = self
         table.dataSource = self
         table.register(CharacterCell.self, forCellReuseIdentifier: "TableCell")
         return table
@@ -42,7 +41,6 @@ private extension MainScreen {
         self.networkManager.setURL(with: "https://rickandmortyapi.com/api/character")
         Task { @MainActor in
             let result = try await self.networkManager.fetchImageDatas()
-            self.characterDataImages = []
             result.forEach { data in
                 self.characterDataImages.append(UIImage(data: data)!)
             }
@@ -71,12 +69,6 @@ private extension MainScreen {
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-}
-
-// MARK: - UITableViewDelegate
-
-extension MainScreen: UITableViewDelegate {
-
 }
 
 // MARK: - UITableViewDataSource
