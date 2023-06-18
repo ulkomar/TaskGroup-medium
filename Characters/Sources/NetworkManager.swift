@@ -1,8 +1,12 @@
 import Foundation
 
+// MARK: - Protocol
+
 protocol NetworkProtocol {
     func setURL(with url: String)
 }
+
+// MARK: - Implementation
 
 final class NetworkManager: NetworkProtocol {
     private var mainURL: URL?

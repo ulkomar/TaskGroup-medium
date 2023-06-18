@@ -11,6 +11,7 @@ class MainScreen: UIViewController {
     init(networkManager: NetworkProtocol) {
         self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
+        self.networkManager.setURL(with: "https://rickandmortyapi.com/api/character")
     }
 
     required init?(coder: NSCoder) {
